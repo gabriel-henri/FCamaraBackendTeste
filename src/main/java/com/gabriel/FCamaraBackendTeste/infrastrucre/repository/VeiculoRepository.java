@@ -3,6 +3,9 @@ package com.gabriel.FCamaraBackendTeste.infrastrucre.repository;
 import com.gabriel.FCamaraBackendTeste.infrastrucre.entities.Veiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface VeiculoRepository extends JpaRepository<Veiculo, String> {
     boolean existsByPlaca(String placa);
+    Optional<Veiculo> findVeiculoByPlaca(String placa);
 }
