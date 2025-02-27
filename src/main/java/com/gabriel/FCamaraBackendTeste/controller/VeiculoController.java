@@ -2,6 +2,7 @@ package com.gabriel.FCamaraBackendTeste.controller;
 
 import com.gabriel.FCamaraBackendTeste.business.service.VeiculoService;
 import com.gabriel.FCamaraBackendTeste.infrastrucre.entities.Veiculo;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -43,5 +44,11 @@ public class VeiculoController {
     @PutMapping
     public ResponseEntity<Veiculo> atualizarVeiculo(@RequestBody Veiculo veiculo){
         return ResponseEntity.ok(veiculoService.atualizarVeiculo(veiculo));
+    }
+
+    @DeleteMapping("/{placa}")
+    public ResponseEntity<?> deletarVeiculo(@PathVariable String placa){
+        veiculoService.removerVeiculo(placa);
+        return ResponseEntity.ok().build();
     }
 }
