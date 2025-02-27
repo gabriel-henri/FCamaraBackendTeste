@@ -4,11 +4,8 @@ import com.gabriel.FCamaraBackendTeste.infrastrucre.entities.Veiculo;
 import com.gabriel.FCamaraBackendTeste.infrastrucre.repository.VeiculoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +26,16 @@ public class VeiculoService {
 
     public List<Veiculo> pesquisarVeiculos(){
         return veiculoRepository.findAll();
+    }
+
+    public Veiculo atualizarVeiculo(Veiculo newVeiculo){
+        Veiculo oldVeiculo = pesquisarVeiculoPorPlaca(newVeiculo.getPlaca());
+
+        oldVeiculo.setMarca(newVeiculo.getMarca());
+        oldVeiculo.setCor(newVeiculo.getCor());
+        oldVeiculo.setTipo(newVeiculo.getTipo());
+        oldVeiculo.setModelo(newVeiculo.getModelo());
+
+        return veiculoRepository.save(oldVeiculo);
     }
 }

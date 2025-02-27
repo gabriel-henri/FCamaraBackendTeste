@@ -36,7 +36,12 @@ public class VeiculoController {
     }
 
     @GetMapping
-    public List<Veiculo> pesquisarVeiculos(){
-        return veiculoService.pesquisarVeiculos();
+    public ResponseEntity<List<Veiculo>> pesquisarVeiculos(){
+        return ResponseEntity.ok().body(veiculoService.pesquisarVeiculos());
+    }
+
+    @PutMapping
+    public ResponseEntity<Veiculo> atualizarVeiculo(@RequestBody Veiculo veiculo){
+        return ResponseEntity.ok(veiculoService.atualizarVeiculo(veiculo));
     }
 }
