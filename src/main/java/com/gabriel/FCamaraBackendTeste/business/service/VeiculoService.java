@@ -2,6 +2,7 @@ package com.gabriel.FCamaraBackendTeste.business.service;
 
 import com.gabriel.FCamaraBackendTeste.infrastrucre.entities.Veiculo;
 import com.gabriel.FCamaraBackendTeste.infrastrucre.repository.VeiculoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,9 @@ public class VeiculoService {
         oldVeiculo.setModelo(newVeiculo.getModelo());
 
         return veiculoRepository.save(oldVeiculo);
+    }
+
+    public void removerVeiculo(String placa){
+        veiculoRepository.deleteByPlaca(placa);
     }
 }
