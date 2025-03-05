@@ -2,7 +2,6 @@ package com.gabriel.FCamaraBackendTeste.business.service;
 
 import com.gabriel.FCamaraBackendTeste.infrastrucre.entities.Veiculo;
 import com.gabriel.FCamaraBackendTeste.infrastrucre.repository.VeiculoRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ public class VeiculoService {
 
     public void cadastrarVeiculo(Veiculo veiculo){
         if(veiculoRepository.existsByPlaca(veiculo.getPlaca())){
-            throw new IllegalArgumentException("O veiculo já está cadastrado");
+            throw new IllegalArgumentException("O veiculo " + veiculo.getPlaca() + " já está cadastrado");
         }
         veiculoRepository.save(veiculo);
     }
