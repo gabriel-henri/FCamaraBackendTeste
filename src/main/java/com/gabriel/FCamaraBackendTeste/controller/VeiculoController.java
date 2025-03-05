@@ -2,7 +2,6 @@ package com.gabriel.FCamaraBackendTeste.controller;
 
 import com.gabriel.FCamaraBackendTeste.business.service.VeiculoService;
 import com.gabriel.FCamaraBackendTeste.infrastrucre.entities.Veiculo;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
