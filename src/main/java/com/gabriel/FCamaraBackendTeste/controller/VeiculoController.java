@@ -29,7 +29,7 @@ public class VeiculoController {
     @GetMapping("/{placa}")
     public ResponseEntity<?> pesquisarVeiculoPorPlaca(@PathVariable String placa){
         try{
-            return ResponseEntity.ok().body(veiculoService.pesquisarVeiculoPorPlaca(placa));
+            return ResponseEntity.ok().body(veiculoService.consultarVeiculoPorPlaca(placa));
         }catch (RuntimeException ex){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
@@ -37,7 +37,7 @@ public class VeiculoController {
 
     @GetMapping
     public ResponseEntity<List<Veiculo>> pesquisarVeiculos(){
-        return ResponseEntity.ok().body(veiculoService.pesquisarVeiculos());
+        return ResponseEntity.ok().body(veiculoService.consultarVeiculos());
     }
 
     @PutMapping
