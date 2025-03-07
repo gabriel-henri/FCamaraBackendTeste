@@ -19,17 +19,17 @@ public class VeiculoService {
         veiculoRepository.save(veiculo);
     }
 
-    public Veiculo pesquisarVeiculoPorPlaca(String placa){
+    public Veiculo consultarVeiculoPorPlaca(String placa){
             return veiculoRepository.findVeiculoByPlaca(placa)
                     .orElseThrow(() -> new RuntimeException("Veiculo com a placa " + placa + " não encontrado"));
     }
 
-    public List<Veiculo> pesquisarVeiculos(){
+    public List<Veiculo> consultarVeiculos(){
         return veiculoRepository.findAll();
     }
 
     public Veiculo atualizarVeiculo(Veiculo newVeiculo){
-        Veiculo oldVeiculo = pesquisarVeiculoPorPlaca(newVeiculo.getPlaca());
+        Veiculo oldVeiculo = consultarVeiculoPorPlaca(newVeiculo.getPlaca());
 
         oldVeiculo.setMarca(newVeiculo.getMarca());
         oldVeiculo.setCor(newVeiculo.getCor());
