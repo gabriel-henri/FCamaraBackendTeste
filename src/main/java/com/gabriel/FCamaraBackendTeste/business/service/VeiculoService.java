@@ -19,9 +19,9 @@ public class VeiculoService {
         veiculoRepository.save(veiculo);
     }
 
-    public Veiculo consultarVeiculoPorPlaca(String placa){
-            return veiculoRepository.findVeiculoByPlaca(placa)
-                    .orElseThrow(() -> new RuntimeException("Veiculo com a placa " + placa + " não encontrado"));
+    public Veiculo consultarVeiculoPorId(Long id){
+            return veiculoRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Veiculo com a placa " + id + " não encontrado"));
     }
 
     public List<Veiculo> consultarVeiculos(){
@@ -29,7 +29,7 @@ public class VeiculoService {
     }
 
     public Veiculo atualizarVeiculo(Veiculo newVeiculo){
-        Veiculo oldVeiculo = consultarVeiculoPorPlaca(newVeiculo.getPlaca());
+        Veiculo oldVeiculo = consultarVeiculoPorId(newVeiculo.getId());
 
         oldVeiculo.setMarca(newVeiculo.getMarca());
         oldVeiculo.setCor(newVeiculo.getCor());
@@ -39,7 +39,7 @@ public class VeiculoService {
         return veiculoRepository.save(oldVeiculo);
     }
 
-    public void removerVeiculo(String placa){
-        veiculoRepository.deleteByPlaca(placa);
+    public void removerVeiculo(Long id){
+        veiculoRepository.deleteById(id);
     }
 }

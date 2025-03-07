@@ -26,10 +26,10 @@ public class VeiculoController {
         }
     }
 
-    @GetMapping("/{placa}")
-    public ResponseEntity<?> pesquisarVeiculoPorPlaca(@PathVariable String placa){
+    @GetMapping("/{id}")
+    public ResponseEntity<?> pesquisarVeiculoPorId(@PathVariable Long id){
         try{
-            return ResponseEntity.ok().body(veiculoService.consultarVeiculoPorPlaca(placa));
+            return ResponseEntity.ok().body(veiculoService.consultarVeiculoPorId(id));
         }catch (RuntimeException ex){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
@@ -40,14 +40,15 @@ public class VeiculoController {
         return ResponseEntity.ok().body(veiculoService.consultarVeiculos());
     }
 
-    @PutMapping
-    public ResponseEntity<Veiculo> atualizarVeiculo(@RequestBody Veiculo veiculo){
+    @PutMapping("/{id}")
+    public ResponseEntity<Veiculo> atualizarVeiculo(@PathVariable Long id, @RequestBody Veiculo veiculo){
+        veiculo.setId(id);
         return ResponseEntity.ok(veiculoService.atualizarVeiculo(veiculo));
     }
 
-    @DeleteMapping("/{placa}")
-    public ResponseEntity<?> deletarVeiculo(@PathVariable String placa){
-        veiculoService.removerVeiculo(placa);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarVeiculo(@PathVariable Long id){
+        veiculoService.removerVeiculo(id);
         return ResponseEntity.ok().build();
     }
 }
