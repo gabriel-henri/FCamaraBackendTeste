@@ -12,11 +12,11 @@ import java.util.List;
 public class VeiculoService {
     private final VeiculoRepository veiculoRepository;
 
-    public void cadastrarVeiculo(Veiculo veiculo){
+    public Veiculo cadastrarVeiculo(Veiculo veiculo){
         if(veiculoRepository.existsByPlaca(veiculo.getPlaca())){
             throw new IllegalArgumentException("O veiculo " + veiculo.getPlaca() + " já está cadastrado");
         }
-        veiculoRepository.save(veiculo);
+        return veiculoRepository.save(veiculo);
     }
 
     public Veiculo consultarVeiculoPorId(Long id){

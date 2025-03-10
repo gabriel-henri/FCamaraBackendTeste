@@ -19,8 +19,9 @@ public class VeiculoController {
     @PostMapping
     public ResponseEntity<?> cadastrarVeiculo(@Valid @RequestBody Veiculo veiculo){
         try{
-            veiculoService.cadastrarVeiculo(veiculo);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Veiculo cadastrado com sucesso");
+            return ResponseEntity.status(HttpStatus.CREATED).body(
+                    veiculoService.cadastrarVeiculo(veiculo)
+            );
         }catch (IllegalArgumentException ex){
             return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
         }

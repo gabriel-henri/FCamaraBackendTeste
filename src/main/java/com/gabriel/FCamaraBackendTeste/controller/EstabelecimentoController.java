@@ -18,10 +18,12 @@ public class EstabelecimentoController {
     private final EstabelecimentoService estabelecimentoService;
 
     @PostMapping
+
     ResponseEntity<?> cadastrarEstabelecimento(@Valid @RequestBody Estabelecimento estabelecimento){
         try {
-            estabelecimentoService.cadastrarEstabelecimento(estabelecimento);
-            return ResponseEntity.ok().body("Estabelecimento cadastrado com sucesso");
+            return ResponseEntity.ok().body(
+                    estabelecimentoService.cadastrarEstabelecimento(estabelecimento)
+            );
         }catch (IllegalArgumentException ex){
             return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
         }

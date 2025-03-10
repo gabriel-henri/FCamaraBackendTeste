@@ -8,18 +8,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class EstabelecimentoService {
     private final EstabelecimentoRepository estabelecimentoRepository;
 
-    public void cadastrarEstabelecimento(Estabelecimento estabelecimento){
+    public Estabelecimento cadastrarEstabelecimento(Estabelecimento estabelecimento){
         if(estabelecimentoRepository.existsByCnpj(estabelecimento.getCnpj())){
             throw new IllegalArgumentException("O etabelecimento "
             + estabelecimento.getCnpj() + " já está cadastrado");
         }
-        estabelecimentoRepository.save(estabelecimento);
+        return estabelecimentoRepository.save(estabelecimento);
     }
 
     public List<Estabelecimento> consultarEstabelecimentos(){
@@ -30,4 +31,6 @@ public class EstabelecimentoService {
         return estabelecimentoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estabelecimento não registrado"));
     }
+
+
 }
