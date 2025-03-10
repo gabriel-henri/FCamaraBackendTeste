@@ -32,5 +32,16 @@ public class EstabelecimentoService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estabelecimento não registrado"));
     }
 
+    public Estabelecimento atualizarEstabelecimento(Estabelecimento newEstabelecimento){
+        Estabelecimento oldEstabelecimento = consultarEstabelecimentoPorId(newEstabelecimento.getId());
+
+        oldEstabelecimento.setQuantidadeVagasMotos(newEstabelecimento.getQuantidadeVagasMotos());
+        oldEstabelecimento.setNome(newEstabelecimento.getNome());
+        oldEstabelecimento.setQuantidadeVagasCarros(newEstabelecimento.getQuantidadeVagasCarros());
+        oldEstabelecimento.setTelefone(newEstabelecimento.getTelefone());
+        oldEstabelecimento.setEndereco(newEstabelecimento.getEndereco());
+
+        return estabelecimentoRepository.save(oldEstabelecimento);
+    }
 
 }
