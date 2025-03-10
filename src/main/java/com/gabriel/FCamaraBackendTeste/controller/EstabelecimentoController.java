@@ -2,6 +2,7 @@ package com.gabriel.FCamaraBackendTeste.controller;
 
 import com.gabriel.FCamaraBackendTeste.business.service.EstabelecimentoService;
 import com.gabriel.FCamaraBackendTeste.infrastrucre.entities.Estabelecimento;
+import com.gabriel.FCamaraBackendTeste.infrastrucre.entities.Veiculo;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -42,5 +43,11 @@ public class EstabelecimentoController {
         }catch (ResponseStatusException ex){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Estabelecimento> atualizarEstabelecimento(@PathVariable Long id, @RequestBody Estabelecimento estabelecimento){
+        estabelecimento.setId(id);
+        return ResponseEntity.ok().body(estabelecimentoService.atualizarEstabelecimento(estabelecimento));
     }
 }
