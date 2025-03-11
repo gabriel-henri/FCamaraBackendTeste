@@ -2,7 +2,6 @@ package com.gabriel.FCamaraBackendTeste.controller;
 
 import com.gabriel.FCamaraBackendTeste.business.service.EstabelecimentoService;
 import com.gabriel.FCamaraBackendTeste.infrastrucre.entities.Estabelecimento;
-import com.gabriel.FCamaraBackendTeste.infrastrucre.entities.Veiculo;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -49,5 +48,11 @@ public class EstabelecimentoController {
     public ResponseEntity<Estabelecimento> atualizarEstabelecimento(@PathVariable Long id, @RequestBody Estabelecimento estabelecimento){
         estabelecimento.setId(id);
         return ResponseEntity.ok().body(estabelecimentoService.atualizarEstabelecimento(estabelecimento));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteEstabelecimento(@PathVariable Long id){
+        estabelecimentoService.removerEstabelecimento(id);
+        return ResponseEntity.ok().build();
     }
 }
