@@ -44,4 +44,8 @@ public class EstabelecimentoService {
         return estabelecimentoRepository.save(oldEstabelecimento);
     }
 
+    public void removerEstabelecimento(Long id){
+        estabelecimentoRepository.deleteById(id);
+    }
+
 }
