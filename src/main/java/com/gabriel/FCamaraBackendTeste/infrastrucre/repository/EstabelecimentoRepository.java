@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface EstabelecimentoRepository extends JpaRepository<Estabelecimento, Long> {
     boolean existsByCnpj(String cnpj);
+
+    Optional<Estabelecimento> findByCnpj(String cnpj);
 }

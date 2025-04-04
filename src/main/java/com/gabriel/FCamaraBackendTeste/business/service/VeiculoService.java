@@ -24,6 +24,11 @@ public class VeiculoService {
                     .orElseThrow(() -> new RuntimeException("Veiculo com a placa " + id + " não encontrado"));
     }
 
+    public Veiculo consultarVeiculoPorPlaca(String placa){
+        return veiculoRepository.findVeiculoByPlaca(placa)
+                .orElseThrow(() -> new RuntimeException("Veiculo com a placa " + placa + " não encontrado"));
+    }
+
     public List<Veiculo> consultarVeiculos(){
         return veiculoRepository.findAll();
     }

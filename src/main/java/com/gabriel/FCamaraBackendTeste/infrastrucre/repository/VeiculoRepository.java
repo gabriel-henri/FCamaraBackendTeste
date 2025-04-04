@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
     boolean existsByPlaca(String placa);
+
+    Optional<Veiculo> findVeiculoByPlaca(String placa);
 }
