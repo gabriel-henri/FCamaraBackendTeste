@@ -1,7 +1,9 @@
 package com.gabriel.FCamaraBackendTeste.infrastrucre.entities;
 
+import com.gabriel.FCamaraBackendTeste.infrastrucre.Enums.VeiculoTipo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +33,6 @@ public class Veiculo {
     @NotBlank
     private String cor;
 
-    @NotBlank
-    private String tipo;
+    @NotNull
+    private VeiculoTipo tipo;
 }

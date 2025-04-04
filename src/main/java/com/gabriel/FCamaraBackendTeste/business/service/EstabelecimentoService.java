@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +29,11 @@ public class EstabelecimentoService {
     public Estabelecimento consultarEstabelecimentoPorId(Long id){
         return estabelecimentoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estabelecimento não registrado"));
+    }
+
+    public Estabelecimento consultarEstabelecimentoPorCnpj(String cnpj){
+        return estabelecimentoRepository.findByCnpj(cnpj)
+                .orElseThrow(() -> new RuntimeException("Estabelecimento com cnpj " + cnpj + " não encontrado"));
     }
 
     public Estabelecimento atualizarEstabelecimento(Estabelecimento newEstabelecimento){
